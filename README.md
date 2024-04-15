@@ -13,15 +13,15 @@ https://github.com/605137155/QT_PeopleCounter/assets/72680169/db1cbc58-307d-4a07
 
 #难点：
 
-#1、拖影实现
+  1、拖影实现
 
-#2、点云数据与目标数据的并发显示
+    2、点云数据与目标数据的并发显示
 
-#3、帧解析
+    3、帧解析
 
-#4、像素映射
+    4、像素映射
 
-#通过知道minValue最小值和maxValue最大值所在的像素位置，即minPixel和maxPixel，然后即可根据【【valut】*【Pixel/单位值】+【minPixel】】来求得某个value对应所在的X或者Y方向的像素的位置。
+          通过知道minValue最小值和maxValue最大值所在的像素位置，即minPixel和maxPixel，然后即可根据【【valut】*【Pixel/单位值】+【minPixel】】来求得某个value对应所在的X或者Y方向的像素的位置。
 
 
 
