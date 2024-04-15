@@ -15,6 +15,8 @@ https://github.com/605137155/QT_PeopleCounter/assets/72680169/db1cbc58-307d-4a07
   
   2、支持的数据的拖影显示
 
+  3、目标的轨迹显示
+
 难点：
 
   1、目标的拖影实现
