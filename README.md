@@ -33,13 +33,13 @@ https://github.com/605137155/QT_PeopleCounter/assets/72680169/db1cbc58-307d-4a07
     
     [坐标值映射为像素]
     
-    通过知道minValue最小值和maxValue最大值所在的像素位置，即minPixel和maxPixel，
+      通过知道minValue最小值和maxValue最大值所在的像素位置，即minPixel和maxPixel，
     
-    然后即可根据【【valut】*【Pixel/单位值】+【minPixel】】来求得某个value对应所在的X或者Y方向的像素的位置。
+      然后即可根据【【valut】*【Pixel/单位值】+【minPixel】】来求得某个value对应所在的X或者Y方向的像素的位置。
 
     [像素映射为坐标值]
 
-    同理。
+      同理。
 
     
 
