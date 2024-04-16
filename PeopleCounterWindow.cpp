@@ -25,17 +25,13 @@ PeopleCounter::PeopleCounter(QWidget *parent)
     int stretchText = 8;
     ui.horizontalLayout_2->removeWidget(ui.widget);
     ui.horizontalLayout_2->removeWidget(ui.widget_2);
-    //ui.horizontalLayout_2->removeWidget(ui.verticalLayout);
     ui.horizontalLayout_2->removeItem(ui.verticalLayout);
-    //ui.horizontalLayout_2->removeItem(ui.horizontalSpacer_2);
     ui.horizontalLayout_2->addWidget(ui.widget,1);
     ui.horizontalLayout_2->addWidget(ui.widget_2, 2);
     ui.horizontalLayout_2->addItem(ui.verticalLayout);
-    //ui.horizontalLayout_2->addWidget(ui.textBrowser, 4);
     ui.horizontalLayout_2->setStretch(2, 10);
     ui.horizontalLayout_2->setStretch(3, 10);
     ui.horizontalLayout_2->setStretch(4, 5);
-    //ui.widget->setStyleSheet("background-color: rgb(255, 255, 255);");
     ui.widget_2->setStyleSheet("background-color: rgb(255, 255, 255);");
 
     //UartThread线程配置
@@ -46,16 +42,13 @@ PeopleCounter::PeopleCounter(QWidget *parent)
     connect(pointWidget_2, &DrawingWidget::sendFrame, this, &PeopleCounter::writeFrame);
     connect(radar, &UartThread::sendTargetNum, this, &PeopleCounter::updateTargetNum);
 
-    //radar->setPriority(QThread::HighestPriority);
-    //ui.widget->hide();
-
     //PureCppThread线程配置
     /*pureThread = new PureCppThread(this);
     connect(pureThread, &PureCppThread::targetReceived, this, &PeopleCounter::updateTargetPoints);
     connect(pureThread, &PureCppThread::targetReceived, this, &PeopleCounter::updateTargetPointsWithCluster);*/
     //pureThread->setPriority(QThread::HighestPriority);
+    
     //左上角图标
-
     ui.label->setPixmap(QPixmap("images/andar_logo.png").scaled(QSize(120,90), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui.label->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     resized = false;
@@ -82,9 +75,6 @@ PeopleCounter::PeopleCounter(QWidget *parent)
     comboBox_2->addItem("115200", QSerialPort::Baud115200);
     comboBox_2->addItem("1382400", 1382400);
     connect(comboBox_2, SIGNAL(currentIndexChanged(int)), this, SLOT(updateBaudrate(int)));
-
-
-
 
     //滑动条改动队列长度
     ui.horizontalSlider->setMinimum(1);

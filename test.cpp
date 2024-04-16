@@ -21,7 +21,7 @@ void ReadSerialData(HANDLE hSerial) {
 			int temp = 0;//0:01£»
 			int state = 0;//
 			uint16_t lenData = 0;
-			char HeadToCheck[7];
+			char HeadToCheck[7] = {};
 			int lenToCheck = 0;
 			int lenToDecodeTheTargetNum = 0;
 			char lenTarget[4];

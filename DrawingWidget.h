@@ -21,11 +21,11 @@ public:
     }
 
     void setPointCloud() {
-        /*pointClound.push_back({ 1, 2,1 ,1 });
-        pointClound.push_back({ -3, 8,1, 1 });*/
-        /*pointClound.push_back({ -0.5, 0.2,3 });
-        pointClound.push_back({ 0.3, 2,4 ,1 });
-        pointClound.push_back({ 0.5, 1,5 });*/
+        //pointClound.push_back({ 1, 2,1 ,1 });
+        //pointClound.push_back({ -3, 8,1, 1 });
+        //pointClound.push_back({ -0.5, 0.2,3 });
+        //pointClound.push_back({ 0.3, 2,4 ,1 });
+        //pointClound.push_back({ 0.5, 1,5 });
     }
 protected:
     void paintEvent(QPaintEvent* event) override {
@@ -36,19 +36,13 @@ protected:
 
         int width = this->width();
         int height = this->height();
-        //int axisMargin = 20; // 坐标轴离边界的距离
-        //int xMin = -5; // 横坐标最小值
-        //int xMax = 5;  // 横坐标最大值
-        //int yMax = 10; // 纵坐标最大值
-        //int yMin = 0;
+
         // 绘制坐标轴
         QPen axisPen(Qt::black);
         painter.setPen(axisPen);
-
         // 横坐标轴
         painter.drawLine(axisMargin, height - axisMargin, width - axisMargin, height - axisMargin);
         painter.drawText(width - axisMargin + 5, height - axisMargin + 5, "X");
-
         // 纵坐标轴
         painter.drawLine(axisMargin, height - axisMargin, axisMargin, axisMargin);
         painter.drawText(axisMargin - 10, axisMargin - 10, "Y");
@@ -129,10 +123,6 @@ protected:
         }
         queueLock.unlock();
         
-        //if (!changed)
-
-        //if (qPointer!=nullptr)
-        //    qPointer->dequeueAll();
 
         QPen pen;
         painter.setRenderHint(QPainter::Antialiasing);
@@ -168,12 +158,9 @@ protected:
 
 
 
-
-
-
     }
 
-    //将坐标映射为像素坐标
+    //将坐标值映射为像素坐标  找到像素值的起始位置，如坐标轴的0点到10点的位置对应的像素点，然后根据【值】和【像素/单位值】来判断value占据多少个像素，再用占据的像素+最小值0所在像素即可知道对应点所在的像素位置。
     int mapToPixel(float value, float minValue, float maxValue, float minPixel, float maxPixel) {
         return static_cast<float>((value - minValue) * (maxPixel - minPixel) / (maxValue - minValue)) + minPixel;
     }
@@ -181,12 +168,12 @@ protected:
     QPointF PixelToFloatCord(int pixelX, int pixelY, int x1, int y1, int x2, int y2, int x3) {
         //pexelY为从上到下增长，而y1到y2为从下到上增长，得转为相同的表示方式才能运算  y1：20  y2 439   与实际pixel相反,
         // 开发时候重点注意一下 
-        float xScale = float(x3-x1)/10.0f;
-        float yScale = float(y2-y1)/ float(yMax);
+        float xScale = float(x3-x1)/10.0f;  //像素值/单位
+        float yScale = float(y2-y1)/ float(yMax);  //像素值/单位
         //qDebug() << "这里的y2-y1是！！！"<< yScale;
         float x = static_cast<float>((float(pixelX)-float(x2))/xScale);
         //qDebug() << "这里的(pixelY- axisMargin是！！！" << float(pixelY - axisMargin);
-        float y = static_cast<float>((float(y2-y1) - float(pixelY- axisMargin)) / yScale); //不+0.5会让y取值范围处于-5到5而不是0到10
+        float y = static_cast<float>((float(y2-y1) - float(pixelY- axisMargin)) / yScale); 
         //qDebug() << "y:" << y;
         return QPointF(x, y);
     }
@@ -321,15 +308,14 @@ protected:
         }
     }
 
+
+
 public slots:
 
     void pointCloundReady(TargetQueue *targetQueue) {
-        //qDebug() << "运行到里了5";
         allQueues = targetQueue->getQueues();
         qPointer = targetQueue;
-        //qDebug() << "运行到里了7";
         update();
-        //qDebug() << "运行到里了111";
     }
 
     void clearWindow() {
@@ -338,8 +324,6 @@ public slots:
         rect = QRect();
         line = QLine();
         update();
-        //qDebug() << "清楚！！！！";
-
     }
 
     void updataQueueSize(int qSize) {
@@ -373,13 +357,13 @@ private:
     int yMin = 0;
     QMutex queueLock;
     //窗口随时改变的像素值，用于窗口绘制图像的自适应大小
-    float x1; //-5，10 的像素值
+    float x1; //-5，10 的像素值   坐标系左上角
     float y1;
-    float x2; //5，0
+    float x2; //0，0             坐标系原点（0，0）
     float y2;
-    float x3; //0,0
+    float x3; //5,0              坐标系右下角
     int lenColor = 6;
-    QColor colorArray[6] = { Qt::red,Qt::blue,Qt::green,Qt::GlobalColor::magenta,Qt::yellow,Qt::gray};
+    QColor colorArray[6] = { Qt::red,Qt::blue,Qt::darkYellow,Qt::darkMagenta,Qt::darkGreen,Qt::gray };    
     int queueSize = 13;
     float minLightness = 100;
     float maxLightness = 200.0;

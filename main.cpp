@@ -8,6 +8,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     qRegisterMetaType<QVector<DataPoint>>("QVector<DataPoint>");
     PeopleCounter w;
+    QIcon icon("./images/AIR.ico");
+    w.setWindowIcon(icon);
     w.show();
     return a.exec();
 

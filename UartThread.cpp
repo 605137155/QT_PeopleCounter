@@ -235,7 +235,6 @@ void UartThread::processData(QByteArray& data, QVector<DataPoint>& dataPoints, Q
             }
         }
 
-
         //判断有哪些类型没有采集到，将这些类型加添加空点，避免该类型没有发生改变
         for (int i = 0; i < 6; i++) {
             if (visited.find(i) == visited.end()) {
